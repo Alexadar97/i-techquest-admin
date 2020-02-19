@@ -1,0 +1,322 @@
+<!-- main -->
+<section class="bg-browse">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h2 class="head">Add or Update Questions</h2>
+      </div>
+      <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+        <ul class="list-group mt-3">
+          <li class="list-item" routerLink="../exam" style="opacity: .7">Exams /</li>
+          <li class="list-item " style="opacity: .7" routerLink="../createexam">Create Exam /</li>
+          <li class="list-item " style="font-weight: bold;">Add or Update Questions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
+          <button class="btn publish mt-4" style="border-radius: 5px;" (click)="back()">Back</button>
+        </div>
+      </div>
+    </div>
+  <section class="bg-manual">
+<div class="container-fluid">
+<div class="row mb-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <!-- / main header -->
+        <div class="wrapper-md" >
+          <!-- stats -->
+          <div class="panel hbox hbox-auto-xs no-border">
+            <div class="col wrapper" style="padding: 35px 35px 0px 35px;">
+              <div class="row">
+                <div class="col-md-6 border-right">
+                  <h4 class="qust-head">Question {{questionnumber}}/{{size}}</h4>
+                  <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true"  [(ngModel)]="question" (input)="dataentry()">
+                    </app-ngx-editor>
+                  <!-- <textarea class="form-control" style="overflow:scroll;height:200px;max-height:200px;background: #F4F6F8;max-width: 100%;"
+                    [(ngModel)]="question" (keyup)="dataentry()">
+                    </textarea> -->
+                  <small class="text-danger" style="position: relative;top:5px">{{questionerror}}</small>
+                  <br>
+                  <div class="ques">
+                      <label class="i-checks i-checks-sm radio-inline" style="padding: 0px 3px 0px 0px;">
+                          <input type="radio" id="multiplecheckReset" name="type" value="multiple" checked="" (input)="changeAnswerType($event.target.value)">
+                          <i></i>
+                        </label>
+                    Multiple Answer &nbsp;&nbsp;&nbsp;
+                   
+                    <label class="i-checks i-checks-sm radio-inline" style="padding: 0px 3px 0px 0px;">
+                        <input type="radio" name="type" value="single" id="singlecheckReset" (input)="changeAnswerType($event.target.value)">
+                        <i></i>
+                      </label>
+                    Single Answer
+                    
+                  </div>
+                  <div class="type" *ngIf="multiple=='true'" [formGroup]="MultipleanswerForm">
+                    <ng-container formArrayName="details" *ngFor="let item of MultipleanswerDetail.controls; let i = index;">
+                      <ng-container [formGroupName]="i">
+                        <div style=" display:flex">
+                          <div class="input-group m-b">
+                            <span class="input-group-addon">{{i+1}}</span>
+                            <textarea type="text" class="form-control bginput" formControlName="answer" (input)="dataentry()"
+                              style="resize:none;"></textarea>
+                            <span class="input-group-addon">
+                              <input type="checkbox" class="cursor" formControlName="checked" (change)="dataentry()">
+                            </span>
+                          </div>
+                          <span *ngIf="i > 3" class="fa fa-trash-o uploadtrash cursor" (click)="deleteRow(i)"></span>
+                        </div>
+                        <small class="text-danger" style="font-size:11px !important;position:relative;bottom:7px" *ngIf="item.controls.answer.invalid && item.controls.answer.touched">Answer
+                          is required</small>
+                      </ng-container>
+                    </ng-container>
+                    <small class="text-danger" style="position: relative;top:5px;float: right;">{{nocheckselect}}</small>
+                    <div class="text-center">
+                      <a id="add_row" (click)="addRow()" class="btn btn-default mt-5" *ngIf="addMultiplebtn=='true'">
+                        <i class="fa fa-plus">&nbsp;&nbsp;&nbsp;Add Option
+                        </i>
+                      </a>
+                      <a id="add_row" (click)="addRow()" class="btn btn-default mt-5" disabled *ngIf="addMultiplebtn=='false'">
+                        <i class="fa fa-plus">&nbsp;&nbsp;&nbsp;Add Option
+                        </i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="type" *ngIf="multiple=='false'" [formGroup]="singleanswerForm">
+      
+                    <ng-container formArrayName="singledetails" *ngFor="let item of singleanswerDetail.controls; let i = index;">
+                      <ng-container [formGroupName]="i">
+                        <div style=" display:flex">
+                          <div class="input-group m-b">
+                            <span class="input-group-addon">{{i+1}}</span>
+                            <textarea type="text" class="form-control bginput" formControlName="answer" (input)="dataentry()"
+                              style="overflow: auto;resize:none;"></textarea>
+                            <span class="input-group-addon">
+                              <input type="radio" class="cursor" (change)="pushradio(i)" checked *ngIf="ifradiocorrectanswer == i"
+                                name="radioPriview" id=singleradio{{i}}>
+                              <input type="radio" class="cursor " (change)="pushradio(i)" *ngIf="ifradiocorrectanswer != i"
+                                name="radioPriview" id=singleradio{{i}}>
+      
+                            </span>
+                          </div>
+                          <span *ngIf="i > 1" class="fa fa-trash-o uploadtrash cursor" (click)="singledeleteRow(i)"></span>
+                        </div>
+                        <small class="text-danger" style="font-size:11px !important;position:relative;bottom:7px" *ngIf="item.controls.answer.invalid && item.controls.answer.touched">Answer
+                          is required</small>
+                      </ng-container>
+                    </ng-container>
+                    <small class="text-danger" style="position: relative;top:5px;float: right;">{{nocheckselectradio}}</small>
+                    <div class="text-center mt-4">
+                      <a id="add_row" (click)="singleaddRow()" class="btn btn-default " *ngIf="addSinglebtn=='true'">
+                        <i class="fa fa-plus">&nbsp;&nbsp;&nbsp;Add Option
+                        </i>
+                      </a>
+                      <a id="add_row" (click)="singleaddRow()" class="btn btn-default " *ngIf="addSinglebtn=='false'"
+                        disabled>
+                        <i class="fa fa-plus">&nbsp;&nbsp;&nbsp;Add Option
+                        </i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="qust-head">Preview </h4>
+                  <span *ngIf="nodata=='true'">
+                    <div style=" margin-top:24vh;" class="text-center">
+                      <h4>NO DATA TO PREVIEW</h4>
+                    </div>
+                  </span>
+                  <div *ngIf="nodata!='true'">
+                    <div class="priviewquestion">
+                      <div class="text-black pre">
+                        <h4 class="text-gray">Question {{questionnumber}} :  </h4>
+                        <!-- <p id="previewhtml">{{question}}</p> -->
+                        <p>{{question}}</p>
+                      </div>
+                    </div>
+                    <div class="priviewanswer" *ngIf="multiple=='true'">
+                      <ng-container *ngFor="let data of multipleanswerPreview; let i = index;">
+                        <div class="form-inline" *ngIf="data.answer!=null && (data.checked!=null && data.checked!=false)">
+                          <div class="checkbox m-l m-r-xs priview">
+                            <label class="i-checks" style="cursor: auto;">
+                              <input type="checkbox" checked="" disabled><i></i>&nbsp;&nbsp;&nbsp;{{data.answer}}
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-inline" *ngIf="data.answer!=null && (data.checked==null || data.checked==false)">
+                          <div class="checkbox m-l m-r-xs priview">
+                            <label class="i-checks" style="cursor: auto;">
+                              <input type="checkbox" disabled><i></i>&nbsp;&nbsp;&nbsp;{{data.answer}}
+                            </label>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div class="priviewanswer" *ngIf="multiple=='false'">
+                      <ng-container *ngFor="let data of   singleanswerPreview; let i = index;">
+                        <div class="form-inline" *ngIf="data.answer!=null && (data.checked!=null && data.checked!=false)">
+                          <label class="i-checks i-checks-sm radio-inline" style="cursor: auto;">
+                            <input type="radio" name="typefdsdg" checked="" disable>
+                            <i></i>&nbsp;&nbsp;&nbsp;{{data.answer}}
+                          </label>
+                        </div>
+                        <div class="form-inline" *ngIf="data.answer!=null && (data.checked==null || data.checked==false)">
+                          <label class="i-checks i-checks-sm radio-inline" style="cursor: auto;">
+                            <input type="radio" name="typefdsdg" disable>
+                            <i></i>&nbsp;&nbsp;&nbsp;{{data.answer}}
+                          </label>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    <div class="col-md-1"></div>
+</div>
+</div>
+</section>
+<div class="container-fluid foot">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+        <div class="last-section">
+            <div class="panel hbox hbox-auto-xs no-border">
+                <div class="col wrapper">
+                  <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                      <!-- <p>Questions</p> -->
+                      <div class="input-group">
+                        <label class="quest">Questions:</label>&nbsp;&nbsp;
+                        <input type="text" class="width" id="footerinput" value={{currentPageFooter}} style=" text-align: center;">&nbsp;&nbsp;
+                        <!-- / {{size}}&nbsp;&nbsp; -->
+                        <span class="">
+                          <!-- <button class="btn publish" type="button" (click)="previousAndGo('go')"(click)="currentPageFooter(currentPageFooter.value)">Go</button> -->
+                          <button class="btn publish ml-3" type="button" (click)="currentPageFooterfunction($event)">Go</button>
+                        </span>
+                      </div>
+          
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 cursor-notallowed">
+                      <button type="button" class="btn  previous" (click)="previousAndGo('previous')" *ngIf="currentPageFooter!=1">
+                        Previous
+                      </button>&nbsp;&nbsp;&nbsp;
+                      <button type="button" class="btn  next" (click)="previousAndGo('next')">
+                        Next
+                      </button>
+                    </div>
+                   
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                          <img class="img-fluid" src="assets/images/rubbish-bin.svg" (click)="showmodal()">
+                       
+                      <!-- <button type="button" class="btn previous"  (click)="pusheditData()">
+                        Save Drafts
+                      </button>&nbsp;&nbsp; -->
+                     
+                      <button type="button" class="btn publish" (click)="save('save')" style="background: #F4F6F8;color: #000;border: 1px solid #B2B2B2;">
+                        Save Question
+                      </button>&nbsp;&nbsp;
+                     
+                      
+                      <!-- <button type="button" class="btn publish"  (click)="changeExamStatus()"> -->
+                      <button type="button" class="btn publish" (click)="save('publish')">
+                        Publish
+                      </button>
+                
+                  </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+</div>
+
+
+  
+  
+  <!-- Modal -->
+  <div id="save" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <!-- Modal content-->
+      <div class="modal-content delete">
+        <div class="modal-header">
+          <h4 class="modal-title font-thin">Save Question</h4>
+        </div>
+        <div class="modal-body">
+          Are you sure want to Save ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" (click)="Confirmsave()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="back" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content delete">
+          <div class="modal-header">
+            <h4 class="modal-title font-thin">Back to Exam List</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure want to Back ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-danger" (click)="confirmback()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="delete" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+          <!-- Modal content-->
+          <div class="modal-content delete">
+            <div class="modal-header">
+              <h4 class="modal-title font-thin">Delete to Questions and Answes</h4>
+            </div>
+            <div class="modal-body">
+              Are you sure want to Delete Questions and Answes ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-danger" (click)="delete()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  <!-- Modal -->
+  <div id="changeExamStatus" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <!-- Modal content-->
+      <div class="modal-content delete">
+        <div class="modal-header">
+          <h4 class="modal-title font-thin">Publish</h4>
+        </div>
+        <div class="modal-body">
+          Are you sure want to publish ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="cancelchangeExamStatus()">No</button>
+          <button type="button" class="btn btn-danger" (click)="confirmchangeExamStatus()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>

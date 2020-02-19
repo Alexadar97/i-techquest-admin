@@ -1,0 +1,71 @@
+<div class="modal-dialog modal-xl">
+  <div class="modal-content" style="border: none;">
+    <section style="background: #F6F9FC;">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 nopadding">
+            <img src="assets/images/login-img.png" class="img-fluid" style="width: 100%;height: 100vh;">
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+            <br><br>
+            <h1 class="login-logo">LOGO</h1>
+
+            <div class="card-box"> 
+              <div class="row">
+                <!-- <div class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center nopadding">
+                  <div class="button-link">
+                    <button class="btn btn-md btn-login g-signin2" data-onsuccess="onSignIn" data-theme="dark"><img
+                        src="assets/images/google.png">&nbsp;&nbsp;Continue with
+                      Google</button>
+                    <button class="btn btn-md btn-login"><img src="assets/images/facebook.png">&nbsp;&nbsp;Continue
+                      with
+                      Facebook</button>
+                    <button class="btn btn-md btn-login"><img src="assets/images/linkedin.png">&nbsp;&nbsp;Continue
+                      with
+                      Linkedin</button>
+                  </div>
+                </div> -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <ng-container *ngIf="loginVssignup==true">
+                    <h4 class="signin-head">Sign In with </h4>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                      <div class="list-group list-group-sm">
+                        <div class="form-group">
+                          <input type="email" formControlName="email" placeholder="Email" name="email" type="text"
+                            class="no-border form-control inputtext" maxlength="100">
+                        </div>
+                        <small *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched"
+                          class="text-danger">Enter
+                          valid E-mail </small>
+
+                        <div class="form-group">
+                          <input type="password" placeholder="Password" class="form-control no-border inputtext"
+                            formControlName="password" maxlength="50">
+                        </div>
+                        <small *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched"
+                          class="text-danger">Enter
+                          valid Password </small>
+                      </div>
+                      <small class="text-danger">
+                        <b>{{errormsg}}</b>
+                      </small>
+                      <div class="checkbox">
+                        <!-- <label><input type="checkbox" style="color:#999999"> Remember me</label> -->
+                      </div>
+                      <button type="submit" class="btn btn-sm  btn-signin">Sign In </button>
+                     
+                      
+                    </form>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

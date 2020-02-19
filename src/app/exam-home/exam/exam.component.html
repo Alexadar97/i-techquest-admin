@@ -1,0 +1,551 @@
+<section class="home-tech">
+    <div class="container-fluid card">
+        <section class="bg-browse">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11">
+                    <h2 class="head">Exams List</h2>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section class="category-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                    <div class="row mb-3">
+                        <div class="card" style="width: 100%;height: 452px;">
+                            <p class=" filterhead mt-4 mb-2">Categories</p>
+                            <ul class="list-group list-group-flush" *ngIf="allCategorys.length>0"
+                                style="height: 105px;overflow-y: auto;">
+                                <ng-container *ngFor="let data of allCategorys ; let index = index">
+                                    <li class="list-group-item">
+                                        <div class="checkbox">
+                                            <label class="i-checks" style="cursor: pointer;">
+                                                <input type="checkbox" value={{data?._id}} class="checksingle3"
+                                                    style="cursor: pointer;"
+                                                    (change)="filterBy($event,'category')">&nbsp;
+                                                {{(data.name != null) ? data.name : '-' }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ng-container>
+                                <!-- <li class="list-group-item"><input id="Cloud" class="checkbox" type="checkbox"><label
+                                      class="Categories" for="Cloud">Cloud</label></li>
+                              <li class="list-group-item"><input id="Management" class="checkbox"
+                                      type="checkbox"><label class="Categories" for="Management">Management</label>
+                              </li>
+                              <li class="list-group-item"><input id="Security" class="checkbox" type="checkbox"><label
+                                      class="Categories" for="Security">Security</label></li>
+                              <li class="list-group-item"><input id="Development" class="checkbox"
+                                      type="checkbox"><label class="Categories" for="Development">Development</label>
+                              </li> -->
+                            </ul>
+                            <ul class="list-group list-group-flush mb-3 mt-2">
+                                <li class="list-group-item head mt-2">Level</li>
+                                <li class="list-group-item mt-2"><input id="Easy" class="checksingle2" value="Easy"
+                                        type="checkbox" (change)="filterBy($event,'level')">
+                                    <label class="Categories" for="Easy">Easy</label></li>
+                                <li class="list-group-item"><input id="Medium" class="checksingle2" value="Medium"
+                                        type="checkbox" (change)="filterBy($event,'level')">
+                                    <label class="Categories" for="Medium">Medium</label></li>
+                                <li class="list-group-item"><input id="Hard" class="checksingle2" value="Hard"
+                                        type="checkbox" (change)="filterBy($event,'level')">
+                                    <label class="Categories" for="Hard">Hard</label>
+                                </li>
+                            </ul>
+                            <p class=" filterhead mt-1 mb-1">Technology</p>
+                            <ul class="list-group list-group-flush mb-4" *ngIf="allTechnology.length>0"
+                                style="height: 122px;overflow-y: auto;">
+                                <ng-container *ngFor="let data of allTechnology ; let index = index">
+                                    <li class="list-group-item">
+                                        <div class="checkbox">
+                                            <label class="i-checks" style="cursor: pointer;">
+                                                <input type="checkbox" value={{data?._id}} class="checksingle1"
+                                                    style="cursor: pointer;"
+                                                    (change)="filterBy($event,'techname')">&nbsp;
+                                                {{(data.name != null) ? data.name : '-' }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                            <div id="input-group mb-2" class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search For Exams"
+                                    (input)="filterbySearch()" [(ngModel)]="filter">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+                            <button class="btn btn-primary mt-1" (click)="createbtn()"><i class="fa fa-plus"
+                                    (click)="createbtn()"></i>&nbsp;&nbsp;CREATE
+                                EXAM</button>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="row">
+                                <div class="col-12 list-inline tab">
+                                    <ul class="nav nav-tabs list-group">
+                                        <li class="taball active">
+                                            <a data-toggle="tab" class="active" href="#All"
+                                                (click)="changetab('all')">All</a>
+                                        </li>
+                                        <li class="taball">
+                                            <a data-toggle="tab" href="#Published"
+                                                (click)="changetab('published')">Published</a>
+                                        </li>
+                                        <li class="taball">
+                                            <a data-toggle="tab" href="#Unpublished"
+                                                (click)="changetab('unpublished')">Unpublished</a>
+                                        </li>
+                                        <li class="taball">
+                                            <a data-toggle="tab" href="#Draft" (click)="changetab('Draft')">Draft</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="All" class="tab-pane fade active show">
+                                            <div class="scrollbar" id="style-7">
+                                                <div class="force-overflow">
+                                                    <div id="card" class="card">
+                                                        <ng-container *ngIf="getAllCategorys?.length>0">
+                                                            <table id="table" class="table">
+                                                                <tbody>
+                                                                    <ng-container
+                                                                        *ngFor="let data of getAllCategorys | orderBy: order | paginate: { id: 'listing_pagination1',itemsPerPage: 8, currentPage: p1}; let index=index;">
+                                                                        <tr>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;width: 5%;">
+                                                                            </td>
+                                                                            <td class="td-head" colspan="3"
+                                                                                style="border-top: none;">
+                                                                                <p class="Sample">
+                                                                                    {{(data.name != null) ?data.name : '-' }}
+                                                                                </p>
+                                                                                <ul id="cloud" class="list-group">
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.categoryname != null) ?data.categoryname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.techname != null) ?data.techname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.difficulty != null) ?data.difficulty : '-' }}
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </td>
+                                                                            <td style="border-top: none;"></td>
+                                                                            <td style="border-top: none;"><button
+                                                                                    class="btn btn-success edit mt-3"
+                                                                                    (click)="editexam(((p1- 1) * 8 )+ (index),'all')">Edit
+                                                                                    &nbsp;<img id="image"
+                                                                                        class="img-fluid"
+                                                                                        src="assets/images/edit.svg"></button>
+                                                                            </td>
+                                                                            <td style="border-top: none;">
+                                                                                <div class="toggle-group mt-3 mt-3"
+                                                                                    *ngIf="data.status=='unpublished' ">
+                                                                                    <input type="checkbox"
+                                                                                        id=on-off-switch{{index}}
+                                                                                        tabindex="1"
+                                                                                        (change)="changeExamStatus(data._id,'publish',$event)">
+                                                                                    <label for=on-off-switch{{index}}>
+                                                                                    </label>
+                                                                                    <div class="onoffswitch pull-right"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="onoffswitch-label">
+                                                                                            <div
+                                                                                                class="onoffswitch-inner">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="onoffswitch-switch">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="toggle-group mt-3 mt-3"
+                                                                                    *ngIf="data.status=='published' ">
+                                                                                    <input type="checkbox"
+                                                                                        id=on-off-switch{{index}}
+                                                                                        (change)="changeExamStatus(data._id,'unpublish',$event)"
+                                                                                        checked="" tabindex="1">
+                                                                                    <label for=on-off-switch{{index}}>
+                                                                                    </label>
+                                                                                    <div class="onoffswitch pull-right"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="onoffswitch-label">
+                                                                                            <div
+                                                                                                class="onoffswitch-inner">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="onoffswitch-switch">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="text-right mt-3"
+                                                                                    *ngIf="data.status=='draft' || data.status=='Draft' "
+                                                                                    style="font-size: 17px;margin-left: 20px;color: #337ab7;">
+                                                                                    Draft&nbsp;<i
+                                                                                        class="fa fa-pencil-square"
+                                                                                        aria-hidden="true"></i>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </ng-container>
+                                                                    <tr>
+                                                                        <td class="text-right" colspan="7"
+                                                                            style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            <pagination-controls
+                                                                                id="listing_pagination1" maxSize="10"
+                                                                                directionLinks="true"
+                                                                                (pageChange)="p1 = $event">
+                                                                            </pagination-controls>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </ng-container>
+                                                        <h2 *ngIf="getAllCategorys?.length==0"
+                                                            style="margin-top:30%;text-align: center;">No data available
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="Published" class="tab-pane fade">
+                                            <div class="scrollbar" id="style-7">
+                                                <div class="force-overflow">
+                                                    <div id="card" class="card">
+                                                        <ng-container *ngIf="PublishSubCategories?.length>0">
+                                                            <table id="table" class="table">
+                                                                <tbody>
+                                                                    <ng-container
+                                                                        *ngFor="let data of PublishSubCategories | orderBy: order | filter:filter |  paginate: { id: 'listing_pagination2',itemsPerPage: 8, currentPage: p2}; let index=index;">
+                                                                        <tr>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;width: 5%;">
+                                                                            </td>
+                                                                            <td class="td-head" colspan="3"
+                                                                                style="border-top: none;">
+                                                                                <p class="Sample">
+                                                                                    {{(data.name != null) ?data.name : '-' }}
+                                                                                </p>
+                                                                                <ul id="cloud" class="list-group">
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.categoryname != null) ?data.categoryname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.techname != null) ?data.techname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.difficulty != null) ?data.difficulty : '-' }}
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </td>
+                                                                            <td style="border-top: none;"></td>
+                                                                            <td style="border-top: none;"><button
+                                                                                    class="btn btn-success edit mt-3"
+                                                                                    (click)="editexam(((p2- 1) * 8 )+ (index),'published')">Edit
+                                                                                    &nbsp;<img id="image"
+                                                                                        class="img-fluid"
+                                                                                        src="assets/images/edit.svg"></button>
+                                                                            </td>
+                                                                            <td style="border-top: none;">
+                                                                                <div class="toggle-group mt-3"
+                                                                                    *ngIf="data.status=='unpublished' ">
+                                                                                    <input type="checkbox"
+                                                                                        id=on-off-switchpublish{{index}}
+                                                                                        tabindex="1"
+                                                                                        (change)="changeExamStatus(data._id,'publish',$event)">
+                                                                                    <label
+                                                                                        for=on-off-switchpublish{{index}}>
+                                                                                    </label>
+                                                                                    <div class="onoffswitch pull-right"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="onoffswitch-label">
+                                                                                            <div
+                                                                                                class="onoffswitch-inner">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="onoffswitch-switch">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="toggle-group mt-3"
+                                                                                    *ngIf="data.status=='published'">
+                                                                                    <input type="checkbox"
+                                                                                        id=on-off-switchpublish{{index}}
+                                                                                        (change)="changeExamStatus(data._id,'unpublish',$event)"
+                                                                                        tabindex="1">
+                                                                                    <label
+                                                                                        for=on-off-switchpublish{{index}}>
+                                                                                    </label>
+                                                                                    <div class="onoffswitch pull-right"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="onoffswitch-label">
+                                                                                            <div
+                                                                                                class="onoffswitch-inner">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="onoffswitch-switch">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </ng-container>
+                                                                    <tr>
+                                                                        <td class="text-right" colspan="7"
+                                                                            style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            <pagination-controls
+                                                                                id="listing_pagination2" maxSize="10"
+                                                                                directionLinks="true"
+                                                                                (pageChange)="p2 = $event">
+                                                                            </pagination-controls>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </ng-container>
+                                                        <h2 *ngIf="PublishSubCategories?.length==0"
+                                                            style="margin-top:30%;text-align: center;">No data available
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="Unpublished" class="tab-pane fade">
+                                            <div class="scrollbar" id="style-7">
+                                                <div class="force-overflow">
+                                                    <div id="card" class="card">
+                                                        <ng-container *ngIf="UnpublishSubCategories?.length>0">
+                                                            <table id="table" class="table">
+                                                                <tbody>
+                                                                    <ng-container
+                                                                        *ngFor="let data of UnpublishSubCategories | orderBy: order | filter:filter |  paginate: { id: 'listing_pagination3',itemsPerPage: 8, currentPage: p3}; let index=index;">
+                                                                        <tr>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;width: 5%;">
+                                                                            </td>
+                                                                            <td class="td-head" colspan="3"
+                                                                                style="border-top: none;">
+                                                                                <p class="Sample">
+                                                                                    {{(data.name != null) ?data.name : '-' }}
+                                                                                </p>
+                                                                                <ul id="cloud" class="list-group">
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.categoryname != null) ?data.categoryname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.techname != null) ?data.techname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.difficulty != null) ?data.difficulty : '-' }}
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </td>
+                                                                            <td style="border-top: none;"></td>
+                                                                            <td style="border-top: none;"><button
+                                                                                    class="btn btn-success edit mt-3"
+                                                                                    (click)="editexam(((p3- 1) * 8 )+ (index),'unpublished')">Edit
+                                                                                    &nbsp;<img id="image"
+                                                                                        class="img-fluid"
+                                                                                        src="assets/images/edit.svg"></button>
+                                                                            </td>
+                                                                            <td style="border-top: none;">
+                                                                                <div class="toggle-group mt-3"
+                                                                                    *ngIf="data.status=='unpublished'">
+                                                                                    <input type="checkbox"
+                                                                                        id=on-off-switchunpublish{{index}}
+                                                                                        checked="" tabindex="1"
+                                                                                        (change)="changeExamStatus(data._id,'publish',$event)"
+                                                                                        tabindex="1">
+                                                                                    <label
+                                                                                        for=on-off-switchunpublish{{index}}>
+                                                                                    </label>
+                                                                                    <div class="onoffswitch pull-right"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="onoffswitch-label">
+                                                                                            <div
+                                                                                                class="onoffswitch-inner">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="onoffswitch-switch">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="toggle-group mt-3"
+                                                                                    *ngIf="data.status=='published'">
+                                                                                    <input type="checkbox"
+                                                                                        id=on-off-switchunpublish{{index}}
+                                                                                        checked="" tabindex="1"
+                                                                                        (change)="changeExamStatus(data._id,'unpublish',$event)"
+                                                                                        checked="" tabindex="1">
+                                                                                    <label
+                                                                                        for=on-off-switchunpublish{{index}}>
+                                                                                    </label>
+                                                                                    <div class="onoffswitch pull-right"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="onoffswitch-label">
+                                                                                            <div
+                                                                                                class="onoffswitch-inner">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="onoffswitch-switch">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </ng-container>
+                                                                    <tr>
+                                                                        <td class="text-right" colspan="7"
+                                                                            style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            <pagination-controls
+                                                                                id="listing_pagination3" maxSize="10"
+                                                                                directionLinks="true"
+                                                                                (pageChange)="p3 = $event">
+                                                                            </pagination-controls>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </ng-container>
+                                                        <h2 *ngIf="UnpublishSubCategories?.length==0"
+                                                            style="margin-top:30%;text-align: center;">No data available
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="Draft" class="tab-pane fade">
+                                            <div class="scrollbar" id="style-7">
+                                                <div class="force-overflow">
+                                                    <div id="card" class="card">
+                                                        <ng-container *ngIf="DraftSubCategories?.length>0">
+                                                            <table id="table" class="table">
+                                                                <tbody>
+                                                                    <ng-container
+                                                                        *ngFor="let data of DraftSubCategories | orderBy: order | filter:filter |  paginate: { id: 'listing_pagination4',itemsPerPage: 8, currentPage: p4}; let index=index;">
+                                                                        <tr>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;width: 5%;">
+                                                                            </td>
+                                                                            <td class="td-head" colspan="3"
+                                                                                style="border-top: none;">
+                                                                                <p class="Sample">
+                                                                                    {{(data.name != null) ?data.name : '-' }}
+                                                                                </p>
+                                                                                <ul id="cloud" class="list-group">
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.categoryname != null) ?data.categoryname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.techname != null) ?data.techname : '-' }}
+                                                                                    </li>
+                                                                                    <li id="list-item"
+                                                                                        class="list-item">
+                                                                                        {{(data.difficulty != null) ?data.difficulty : '-' }}
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </td>
+                                                                            <td style="border-top: none;"></td>
+                                                                            <td class="text-right" colspan="2"
+                                                                                style="border-top: none;"><button
+                                                                                    class="btn btn-success edit mt-3"
+                                                                                    (click)="editexam(((p4- 1) * 8 )+ (index),'unpublished')">Edit
+                                                                                    &nbsp;<img id="image"
+                                                                                        class="img-fluid"
+                                                                                        src="assets/images/edit.svg"></button>
+                                                                            </td>
+                                                                            <td
+                                                                                style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </ng-container>
+                                                                    <tr>
+                                                                        <td class="text-right" colspan="7"
+                                                                            style="border-bottom:1px solid #fff !important;border-top: none;">
+                                                                            <pagination-controls
+                                                                                id="listing_pagination4" maxSize="10"
+                                                                                directionLinks="true"
+                                                                                (pageChange)="p4 = $event">
+                                                                            </pagination-controls>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </ng-container>
+                                                        <h2 *ngIf="DraftSubCategories?.length==0"
+                                                            style="margin-top:30%;text-align: center;">No data available
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<div id="changeExamStatus" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content delete">
+            <div class="modal-header">
+                <h4 class="modal-title font-thin">{{changeExamChangeStatus |titlecase}}</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to {{changeExamChangeStatus}} ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="cancelchangeExamStatus()">Cancel</button>
+                <button type="button" class="btn btn-danger"
+                    (click)="confirmchangeExamStatus()">{{changeExamChangeStatus |titlecase}}</button>
+            </div>
+        </div>
+    </div>
+</div>

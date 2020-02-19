@@ -1,0 +1,130 @@
+button.btn.btn-secondary {
+    background: #F4F6F8;
+    border-radius: 2px;
+    border: none;
+    color: #000;
+}
+li.nav-item.Browse {
+    padding: 0px 0px 0px 16px;
+    cursor: pointer;
+}
+li.nav-item {
+    padding: 0px 28px 0px 0px;
+}
+button.btn.btn-success {
+    font-size: 13px;
+    background: #839F07;
+    border-radius: 2px;
+    border: none;
+}
+button.btn.btn-success:hover {
+    box-shadow: 0 0 5px #06B1A6;
+    background: #fff !important;
+    color: #000 !important;
+}
+button.btn.btn-danger {
+    color: #fff;
+    background-color: #06B1A6;
+    border-color: #06B1A6;
+}
+a.nav-link.icons{
+    background: #175777;
+    border-radius: 2px;
+    padding: 7px 42px 7px 11px;
+    font-size: 14px;
+    color: #fff;
+}
+ul.navbar-nav.Browse {
+    padding: 0px 0px 0px 12px;
+}
+section.bg-browse {
+    padding: 18px 0px 18px 4px;
+    background: #FFFFFF;
+    box-shadow: 0 9px 16px -15px rgba(0,0,0,0.31);
+}
+h2.head{
+    font-family: Roboto;
+    font-size: 23px;
+    color: #175777;
+    letter-spacing: 0;
+}
+section.upload-bg {
+    padding: 23px 17px 23px 17px;
+}
+input.form-control {
+    background: #F4F6F8;
+    border-radius: 5px;
+    border: none;
+    height: 45px;
+}
+button.btn.btn-primary {
+    background: #06B1A6;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 16px 5px 16px;
+}
+h2.bulk-head {
+    font-family: Hind;
+    font-size: 22px;
+    color: #000000;
+    letter-spacing: 0.69px;
+}
+button.btn.btn-success.edit {
+    background: #F4F6F8;
+    border-radius: 4px;
+    border: none;
+    font-family: Hind;
+    font-size: 17px;
+    color: #303030;
+    letter-spacing: 0.64px;
+}
+img#image{
+    width: 18px;
+}
+th,td{
+    border:none;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: none !important;
+}
+select#sel1 {
+    background: #F4F6F8;
+    border: none;
+    border-radius: 5px;
+    height: 45px;
+}
+select#sel1:focus {
+    box-shadow: unset;
+}
+ul.list-group.mt-3{
+    display: -webkit-inline-box;
+    list-style: none;
+}
+li.list-item {
+    padding: 0px 0px 0px 9px;
+    cursor: pointer;
+}
+.table-bg {
+    height: 56vh;
+    overflow-x: auto;
+}
+td.td-head {
+    font-family: Hind;
+    font-size: 20px;
+    color: #000000;
+    letter-spacing: 0.83px;
+}
+td.td-head1 {
+    font-family: Hind;
+    font-size: 20px;
+    color: #303030;
+    letter-spacing: 0.69px;
+}
+th.head{
+    font-family: Hind;
+    font-size: 20px;
+    color: #303030;
+    letter-spacing: 0.69px;
+    font-weight: 400;
+}

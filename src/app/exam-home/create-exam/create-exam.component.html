@@ -1,0 +1,258 @@
+<section class="bg-browse">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+      <h2 class="head">Create Exam</h2>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+      <ul class="list-group mt-3">
+        <li class="list-item" routerLink="../exam" style="opacity: .7">Exams /</li>
+        <li class="list-item " style="font-weight: bold;">Create Exam</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
+        <button class="btn btn-success mt-4" routerLink="/dashboard/exam-home/exam">Back</button>
+      </div>
+    </div>
+  </div>
+<form [formGroup]="createxamform">
+  <section *ngIf="isViewable">
+    <section class="create-bg">
+      <div class="container-fluid">
+
+        <div class="row mt-5">
+          <div class="col-md-1"></div>
+          <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 card">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <h2 class="head mt-4 ml-4">Exam Information</h2>
+              </div>
+            </div>
+            <div class="section-bg">
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="row mt-3">
+                    <div class="col-md-12">
+                      <label>Title of the exam</label>
+                      <input formControlName="exam" type="text" class="form-control mt-3" placeholder="Enter Name Here">
+                      <small class="text-danger errormsg" *ngIf="
+                      !createxamform.controls.exam.valid &&
+                      createxamform.controls.exam.touched
+                    ">Title of the exam is required</small>
+                    </div>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col-md-12">
+                      <label>Exam Level</label>
+                      <ul class="list-group mt-2">
+                        <li class="list-item"><input type="radio" id="easy" value="Easy" name="level"
+                            formControlName="level"><label for="easy" class="easy">Easy</label></li>
+                        <li class="list-item"><input type="radio" id="medium" value="Medium" name="level"
+                            formControlName="level"><label for="medium" class="easy">Medium</label>
+                        </li>
+                        <li class="list-item"><input type="radio" id="hight" value="Hard" name="level"
+                            formControlName="level"><label for="hight" class="easy">Hard</label></li>
+                      </ul>
+                      <small class="text-danger errormsg" *ngIf="
+                  !createxamform.controls.level.valid &&
+                  createxamform.controls.level.touched
+                ">Exam Level is required</small>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-12">
+                      <label>Select Category</label>
+                      <div class="form-group">
+                          <select class="form-control" style="background: #F4F6F8;width: 100%;cursor: pointer;"
+                            (change)="gettechnology($event.target.value)" id="sel1" formControlName="Categoryid">
+                            <option value="null" disabled>--Select Category--</option>
+                            <ng-container *ngFor="let data of allCategories;  let index = index">
+                              <option value={{data?._id}}>{{(data.name != null) ?data.name : '0' }}</option>
+                            </ng-container>
+                          </select>
+                        <small class="text-danger errormsg" *ngIf="
+                  !createxamform.controls.Categoryid.valid &&
+                  createxamform.controls.Categoryid.touched
+                ">Select Category is required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-12">
+                      <label>Select Technology</label>
+                      <div class="form-group">
+                          <select class="form-control" style="background: #F4F6F8;width: 100%;cursor: pointer;" id="sel2" formControlName="subcatid">
+                              <option value="null" disabled>--Select Technology--</option>
+                            <ng-container *ngFor="let data of allTechnologies;  let index = index">
+                              <option value={{data?._id}}>{{(data.name != null) ?data.name : '0' }}</option>
+                            </ng-container>
+                          </select>
+                        <small class="text-danger errormsg" *ngIf="
+                    !createxamform.controls.subcatid.valid &&
+                    createxamform.controls.subcatid.touched
+                  ">Select Technology is required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-6">
+                      <label>Duration</label>
+                      <input type="number" class="form-control mt-2" formControlName="Duration">
+                      <small class="text-danger errormsg" *ngIf="
+                  !createxamform.controls.Duration.valid &&
+                  createxamform.controls.Duration.touched
+                ">Duration is required</small>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Total Number of Questions </label>
+                      <input type="number" class="form-control mt-2" formControlName="Total">
+                      <small class="text-danger errormsg" *ngIf="
+                  !createxamform.controls.Total.valid &&
+                  createxamform.controls.Total.touched
+                ">Total Number of Questions is required</small>
+                    </div>
+                  </div>
+                  <!-- <div class="row mt-3">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <label>Total Number of Questions</label>
+                  <input id="form-control" type="text" class="form-control mt-2" placeholder="Upload Questions">
+                </div>
+              </div> -->
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <h5 class="head">Featured Image</h5>
+                      <img [src]="url" class="img-fluid mt-3" style="width: 100%">
+                    </div>
+
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-12 text-right">
+                      <div class="upload-btn-wrapper">
+                        <button class="btn btn-success upload ">Upload Image</button>
+                        <input type="file" name="myfile" formControlName="files" (change)="addexamimage($event)"
+                          accept="image/png, image/jpeg, image/jpg /*" /><br>
+                        <small class="text-danger errormsg" *ngIf="
+                        !createxamform.controls.files.valid &&
+                        createxamform.controls.files.touched
+                      ">Upload Image is required</small>
+                        <p class="imageupload mt-2">{{Filename}}</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-5">
+                  <div class="col-md-3">
+                    <button class="btn btn-succuss bulk mb-4" (click)="addmanualexam()"><img class="img-fluid"
+                        src="assets/images/icons8-enter-2.png"> <label class="bulk">Manual Entry</label></button>
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn btn-succuss bulk" (click)="uploads()"><img class="img-fluid"
+                        src="assets/images/icons8-upload.png">
+                      <label class="bulk">Bulk Upload</label></button>
+                  </div>
+                  <div class="col-md-6"></div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <br><br>
+      </div>
+    </section>
+  </section>
+
+
+
+  <section *ngIf="!isViewable">
+    <section class="create-bg">
+      <div class="container-fluid">
+
+        <div class="row mt-5">
+          <div class="col-md-1"></div>
+          <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 card">
+            <section class="upload-bg">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+                  <h2 class="bulk-head">Bulk Upload Questions</h2>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                  <div class="upload-btn-wrapper">
+                    <button class="btn btn-success upload " style="width: 100%;padding: 9px 22px 9px 16px;"><img
+                        class="img-fluid" src="assets/images/icons8-upload.png"><label class="bulk">Bulk
+                        Upload</label></button>
+                    <input type="file" name="myfile" (change)="UploadthumblineImage2($event)"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"/><br>
+                    <p class="imageupload mt-2">{{thumblineImage2}}</p>
+                  </div>
+                </div>
+                <div class="col-md-10"></div>
+              </div>
+              <div class="row mt-5">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+                  <h2 class="bulk-head">Questions Uploaded 50</h2>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                  <button class="btn btn-succuss bulk" (click)="review()"><label class="bulk">Review
+                      Questions</label></button>
+                </div>
+                <div class="col-md-10"></div>
+              </div>
+            </section>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+
+      </div>
+    </section>
+  </section>
+
+</form>
+<div class="modal fade" id="bulkupload" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div id="modal-dialog" class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <h4 class="modal-title">Bulk Upload</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure want to Bulk Upload?
+        </p>
+      </div>
+      <div class="modal-footer" style="border:none">
+        <button type="button" class="btn btn-sm btn-primary1" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-sm btn-primary1" data-dismiss="modal" (click)="bulkupload()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="manual" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div id="modal-dialog" class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <h4 class="modal-title">Bulk Upload</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure want to Manual Entry?
+        </p>
+      </div>
+      <div class="modal-footer" style="border:none">
+        <button type="button" class="btn btn-sm btn-primary1" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-sm btn-primary1" >Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,209 @@
+button.btn.btn-secondary {
+    background: #F4F6F8;
+    border-radius: 2px;
+    border: none;
+    color: #000;
+}
+li.nav-item.Browse {
+    padding: 0px 0px 0px 16px;
+    cursor: pointer;
+}
+li.nav-item {
+    padding: 0px 28px 0px 0px;
+}
+button.btn.btn-success {
+    font-size: 15px;
+    background: #06B1A6;
+    border-radius: 2px;
+    border: none;
+}
+button.btn.btn-success:hover {
+    box-shadow: 0 0 5px #06B1A6;
+    background: #fff !important;
+    color: #000 !important;
+}
+a.nav-link.icons{
+    background: #175777;
+    border-radius: 2px;
+    padding: 7px 42px 7px 11px;
+    font-size: 14px;
+    color: #fff;
+}
+ul.navbar-nav.Browse {
+    padding: 0px 0px 0px 12px;
+}
+section.bg-browse {
+    padding:18px 0px 18px 4px;
+    background: #FFFFFF;
+    box-shadow: 0 9px 16px -15px rgba(0,0,0,0.31);
+}
+h2.head{
+    font-family: Roboto;
+    font-size: 23px;
+    color: #175777;
+    letter-spacing: 0;
+}
+section.upload-bg {
+    padding: 23px 17px 23px 17px;
+}
+input.form-control {
+    background: #F4F6F8;
+    border-radius: 5px;
+    border: none;
+    height: 45px;
+    width: 65%;
+}
+button.btn.btn-primary {
+    background: #06B1A6;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 16px 5px 16px;
+}
+h2.bulk-head {
+    font-family: Hind;
+    font-size: 22px;
+    color: #000000;
+    letter-spacing: 0.69px;
+}
+button.btn.btn-success.edit {
+    background: #F4F6F8;
+    border-radius: 4px;
+    border: none;
+    font-family: Hind;
+    font-size: 17px;
+    color: #303030;
+    letter-spacing: 0.64px;
+}
+img#image{
+    width: 18px;
+}
+th,td{
+    border:none;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: none !important;
+}
+ul.list-group.mt-3{
+    display: -webkit-inline-box;
+    list-style: none;
+}
+li.list-item {
+    padding: 0px 0px 0px 9px;
+    cursor: pointer;
+}
+.table-bg {
+    height: 56vh;
+    overflow-x: auto;
+}
+td.td-head {
+    font-family: Hind;
+    font-size: 20px;
+    color: #000000;
+    letter-spacing: 0.83px;
+}
+td.td-head1 {
+    font-family: Hind;
+    font-size: 20px;
+    color: #303030;
+    letter-spacing: 0.69px;
+}
+th.head{
+    font-family: Hind;
+    font-size: 20px;
+    color: #303030;
+    letter-spacing: 0.69px;
+    font-weight: 400;
+}
+ul.nav.nav-tabs.list-group {
+    display: -webkit-inline-box;
+}
+ul.nav.nav-tabs.list-group {
+    width: 100%;
+    background: #fff;
+    padding: 14px 0px 0px 40px;
+    box-shadow: -8px 9px 16px -15px rgba(0,0,0,0.31);
+    border-radius: 2px;
+    border-bottom: none;
+}
+li.taball {
+    padding: 0px 87px 0px 0px;
+    font-family: Hind;
+    font-size: 20px;
+    color: #303030;
+    letter-spacing: 0.69px;
+    font-weight: 400;
+    cursor: pointer;
+}
+th#exam {
+    text-align: center;
+}
+th#technology {
+    text-align: center;
+}
+label.bannerimage {
+    font-family: Hind;
+    font-size: 22px;
+    color: #000000;
+    letter-spacing: 0.69px;
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .upload-btn-wrapper input[type=file] {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    width: 133px;
+    height: 33px;
+  }
+  input[type="file"] {
+    cursor: pointer;
+  }
+  ::-webkit-file-upload-button {
+    cursor:pointer;
+}
+div#imagePreview{
+    width: 100%;
+    height: 363px;
+     border-radius: 100%;
+     background-position: center !important;
+    background-repeat: no-repeat  !important;
+    background-size: contain !important;
+    box-shadow: 0px 1px 14px 1px rgba(0, 0, 0, 0.12);
+}
+.avatar-upload .avatar-edit input + label:after {
+    content: "\f030";
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    margin: auto;
+}
+.avatar-upload .avatar-edit input + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 1px 14px 1px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    left: 91px;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #06B1A6;
+    border-color: #06B1A6;
+}
+.btn-danger.focus, .btn-danger:focus {
+    box-shadow: 0px 0px 0px 0px #06B1A6 !important;
+}

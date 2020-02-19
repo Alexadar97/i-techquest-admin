@@ -1,0 +1,224 @@
+body {
+    background: #F6F9FC;
+}
+button.btn.btn-secondary {
+    background: #175777;
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+}
+li.nav-item.Browse {
+    padding: 0px 0px 0px 16px;
+    cursor: pointer;
+}
+li.nav-item {
+    padding: 0px 28px 0px 0px;
+}
+
+a.nav-link.icons{
+    background: #175777;
+    border-radius: 2px;
+    padding: 7px 42px 7px 11px;
+    font-size: 14px;
+    color: #fff;
+}
+ul.navbar-nav.Browse {
+    padding: 0px 0px 0px 12px;
+}
+@media (max-width:768px){
+    li.nav-item.Browse{
+        padding: 0px 197px 0px 0px;
+    }
+    ul.navbar-nav.Browse{
+        padding: 0px 0px 0px 0px;
+    }
+}
+
+h2.head {
+    font-family: Roboto;
+    font-size: 23px;
+    color: #175777;
+    letter-spacing: 0;
+}
+section.bg-browse {
+    padding: 18px 0px 18px 4px;
+    background: #FFFFFF;
+    box-shadow: 0 9px 16px -15px rgba(0,0,0,0.31);
+}
+/* section.create-bg {
+    padding: 53px 148px 0px 149px;
+} */
+.section-bg {
+    padding: 0 25px;
+}
+input.form-control {
+    background: #F4F6F8;
+    border: 1px solid #B8C4D0;
+    border-radius: 2px;
+    width: 100%;
+}
+ul.list-group {
+    list-style: none;
+    display: -webkit-box;
+}
+li.list-item {
+    padding: 0px 32px 0px 0px;
+}
+label.easy {
+    padding: 0px 0px 0px 7px;
+    cursor: pointer;
+}
+input#hight {
+    cursor: pointer;
+}
+select#sel1 {
+    background: #F4F6F8;
+    border: 1px solid #B8C4D0;
+    border-radius: 2px;
+}
+input#form-control {
+    border: none;
+    border-bottom: 1px solid #979797;
+    background: #fff;
+}
+button.btn.btn-succuss.bulk {
+    background: #06B1A6;
+    border-radius: 2px;
+}
+button.btn.btn-succuss.bulk {
+    background: #06B1A6;
+    border-radius: 2px;
+    padding: 8px 22px 2px 16px;
+    width: 100%;
+    font-family: Hind;
+    font-size: 19px;
+    color: #FFFFFF;
+    letter-spacing: 0.53px;
+}
+label.bulk {
+    padding: 0px 0px 0px 16px;
+}
+button.btn.btn-success.upload{
+    background: #06B1A6;
+    border-radius: 2px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+button.btn.btn-sm.btn-primary1 {
+    background: #06B1A6;
+    color: #fff;
+}
+select#sel1:focus {
+    box-shadow: unset;
+}
+ul.list-group.mt-3{
+    display: -webkit-inline-box;
+    list-style: none;
+}
+li.list-item {
+    padding: 0px 0px 0px 9px;
+    cursor: pointer;
+}
+
+/* bulk upload */
+button.btn.btn-secondary {
+    background: #175777;
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+}
+li.nav-item.Browse {
+    padding: 0px 0px 0px 16px;
+    cursor: pointer;
+}
+li.nav-item {
+    padding: 0px 28px 0px 0px;
+}
+
+a.nav-link.icons{
+    background: #175777;
+    border-radius: 2px;
+    padding: 7px 42px 7px 11px;
+    font-size: 14px;
+    color: #fff;
+}
+ul.navbar-nav.Browse {
+    padding: 0px 0px 0px 12px;
+}
+section.bg-browse {
+    padding: 20px 0px 20px 4px;
+    background: #FFFFFF;
+    box-shadow: 0 9px 16px -15px rgba(0,0,0,0.31);
+}
+h2.head {
+    font-family: Roboto;
+    font-size: 23px;
+    color: #175777;
+    letter-spacing: 0;
+}
+button.btn.btn-succuss.bulk{
+    background: #06B1A6;
+    border-radius: 2px;
+    padding: 8px 22px 2px 16px;
+    width: 100%;
+    font-family: Hind;
+    font-size: 19px;
+    color: #FFFFFF;
+    letter-spacing: 0.53px;
+}
+section.upload-bg {
+    padding: 18px;
+    height: 62vh;
+}
+h2.bulk-head {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    color: #303030;
+    letter-spacing: 0.69p;
+}
+label.bulk {
+    padding: 0px 0px 0px 18px;
+    cursor: pointer;
+   
+}
+ul.list-group.mt-3{
+    display: -webkit-inline-box;
+    list-style: none;
+}
+li.list-item {
+    padding: 0px 0px 0px 9px;
+}
+div#modal-dialog{
+    margin-top: 10%;
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+  }
+  .upload-btn-wrapper input[type=file] {
+    position: absolute;  
+    right: 0px;
+    top: 0px;
+    opacity: 0;
+    width: 27%;
+    height: 34px;
+  }
+  input[type="file"] {
+    cursor: pointer;
+  }
+  ::-webkit-file-upload-button {
+    cursor:pointer;
+}
+button.btn.btn-success.mt-4 {
+    background: #06B1A6;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 16px 5px 16px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}   

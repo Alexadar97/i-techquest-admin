@@ -1,0 +1,192 @@
+<section class="bg-browse">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+      <h2 class="head">Category</h2>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+      <ul class="list-group mt-3">
+        <li class="list-item" routerLink="../exam-home/exam" style="opacity: .7">Exams /</li>
+        <li class="list-item " style="font-weight: bold;">Category</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
+      <button class="btn btn-primary mt-4" routerLink="/dashboard/exam-home/exam">Back</button>
+    </div>
+  </div>
+</div>
+<section class="create-bg">
+  <div class="container-fluid">
+
+    <div class="row mt-3">
+      <div class="col-md-1"></div>
+      <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 card">
+        <section class="upload-bg">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5" style="border-right:1px solid #979797;">
+              <form [formGroup]="categorieforrm">
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <h2 class="bulk-head">Category Name</h2>
+                    <input class="form-control" type="text" autocomplete="on" formControlName="name">
+                    <small class="text-danger errormsg" *ngIf="
+                  !categorieforrm.controls.name.valid &&
+                  categorieforrm.controls.name.touched
+                ">Category Name is required</small>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <h2 class="bulk-head">Upload Image</h2>
+                    <div class="upload-btn-wrapper">
+                      <button class="btn btn-success upload " style=" width: 133px;border-radius: 5px">Upload Image</button>
+                      <input type="file" name="myfile" formControlName="file" (change)="UploadthumblineImage2($event)"
+                        accept="image/png, image/jpeg, image/jpg /*" /><br>
+                      <small class="text-danger errormsg" *ngIf="
+                        !categorieforrm.controls.file.valid &&
+                        categorieforrm.controls.file.touched
+                      ">Image is required</small>
+                      <p class="imageupload mt-2" style="width: 20vw;">{{thumblineImage2}}</p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="row mt-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <button class="btn btn-primary" (click)="addcategory()">Add Category</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+              <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                  <div class="input-group"><input class="form-control" type="text" [(ngModel)]="filter">
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button">
+                        <i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="table-bg">
+                    <table class="table">
+                      <thead style="background: #F4F6F8;border-radius: 5px;">
+                        <tr>
+                          <th></th>
+                          <th id="name" class=" head" style="width: 27%">
+                            Name
+                          </th>
+                          <th id="exam" class="head">
+                            Exams
+                          </th>
+                          <th class="head" id="technology">
+                            Technology
+                          </th>
+                         <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let data of allCategorys | filter:filter |  paginate: { id: 'listing_pagination',itemsPerPage: 10, currentPage: page}; let i=index;">
+                          <td></td>
+                          <td class="td-head">{{(data.name != null) ?
+                            data.name : '-' }}</td>
+                          <td class="td-head" style="text-align: center">{{(data.examcount != null) ?
+                          data.examcount : '-' }}</td>
+                          <td class="td-head" style="text-align: center">{{(data.subcatseq != null) ?
+                          data.subcatseq : '-' }}</td>
+                          <td><button class="btn btn-success edit" (click)="editcategory((page- 1) * 10 + i)">Edit
+                              &nbsp;<img class="img-fluid" id="image" src="assets/images/edit.svg"></button></td>
+                          <!-- <td><button class="btn btn-success edit" (click)="deletecategory(data._id)"><img
+                                class="img-fluid" id="image" src="assets/images/delete-trash-remove-256.png"></button>
+                          </td> -->
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-12 text-right">
+                  <div>
+                    <pagination-controls id="listing_pagination" maxSize="10" directionLinks="true"
+                      (pageChange)="page = $event"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <br><br>
+  </div>
+</section>
+<div id="delete" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <!-- Modal content-->
+    <div class="modal-content delete">
+      <div class="modal-header">
+        <h4 class="modal-title font-thin">Delete Category</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure want to delete category ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="edit" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+    <div class="modal-content delete">
+      <div class="modal-header">
+        <h4 class="modal-title font-thin">Edit Category</h4>
+      </div>
+      <div class="modal-body">
+        <div [formGroup]="EditcreateCategory">
+          <div class="form-group">
+            <label for="title" class="label categoryName">Category Name</label>
+            <input type="text" class="form-control title" id="title" placeholder="Enter Name Here" name="title"
+              formControlName="name" style="width: 100%">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="logo text-left ">
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" (change)="changeCategoryImage($event)"
+                    style="display: none;">
+                  <label for="imageUpload"></label>
+                </div>
+              </div>
+              <div class="avatar-preview">
+                <div class="img-fluid" id="imagePreview" [style.background]="'url(' +  assets1 + ')'"></div>
+              </div>
+              <!-- <div [style.background]="'url(' +  assets1 + ')'" class="image"><i class="fa fa-camera"></i></div> -->
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="Confirmeditcategory()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

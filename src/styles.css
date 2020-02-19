@@ -1,0 +1,44 @@
+/* nav bar */
+body{
+    background: #F6F9FC;
+}
+nav.navbar.navbar-expand-md {
+    background-image: linear-gradient(-135deg, #054564 0%, #022B44 100%);
+}
+a.navbar-brand {
+    font-family: Roboto;
+    font-size: 23px;
+    color: #FFFFFF;
+    letter-spacing: 0.64px;
+}
+a.nav-link {
+    color: #fff;
+    font-family: roboto;
+}
+input.form-control:focus {
+    box-shadow: unset !important;
+}
+button.btn.btn-secondary:active {
+    border: none !important;
+    background: #f4f6f8 !important;
+    color: #000 !important;
+}
+button.btn.btn-secondary:focus {
+    box-shadow: unset !important;
+}
+.ngx-editor-textarea {
+    min-height: 176px !important;
+}
+.imgc-topbar.btn-ctnr {
+    display: none !important;
+}
+.ngx-editor-textarea img {
+    width: 116px;
+}
+.priviewquestion img {
+    width: 116px;
+}
+.btn:hover{
+    background: #26264f !important;
+    color: #fff !important;
+}
